@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:Icesset.Controls" xmlns:pcview="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             Title="Waybill details"
+             BackgroundColor="#cbc3e3"
+             x:Class="Icesset.Views.WayBillPage">
+
+    <ScrollView>
+        <FlexLayout Direction="Column">
+            <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Center"
+                             Spacing="10"
+                             Margin="0,20,0,5">
+                <Label Text="Transaction type" FontSize="18" Margin="30,0" TextColor="Black" FontFamily="Poppins-Light"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,0">
+                    <StackLayout>
+                        <pcview:PancakeView x:Name="pc" 
+                            CornerRadius="10"
+                                HeightRequest="55" BackgroundColor="White" >
+                            <Grid ColumnDefinitions="*,Auto" Padding="20,0">
+                                <Picker  x:Name="transTypePicker" SelectedIndexChanged="transTypePicker_SelectedIndexChanged" Grid.Column="0" 
+                                         Title="Select Transaction type" TextColor="Gray">
+                                    <Picker.Items>
+                                        <x:String>Transfer</x:String>
+                                        <x:String>Consume</x:String>
+                                        <x:String>External</x:String>
+                                    </Picker.Items>
+                                </Picker>
+                                <Label Grid.Column="1" VerticalOptions="Center" TextColor="Navy" 
+                                       FontFamily="Poppins-Light" FontSize="20" HorizontalOptions="End"/>
+                            </Grid>
+                        </pcview:PancakeView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="Destination"
+                           FontSize="18"
+                           FontFamily="Poppins-Light"
+                           Margin="30,0"
+                           TextColor="Black"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,0">
+                    <controls:CustomEntry
+                                FontFamily="Poppins-Light"
+                                x:Name="NameTextBox"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="Small"
+                                Placeholder="Enter destination"
+                                TextColor="Black"
+                                />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="Sent to"
+                           FontSize="18"
+                           FontFamily="Poppins-Light"
+                           Margin="30,0"
+                           TextColor="Black"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,0" IsVisible="{Binding PickerVisible}">
+
+                    <Picker x:Name="userListPicker" ItemsSource="{Binding FullName}"    ItemDisplayBinding="{Binding thefullname}"
+                            SelectedIndexChanged="userListPicker_SelectedIndexChanged" Title="Select Receiver">
+                        
+                    </Picker>
+                    
+                    <!--<controls:CustomEntry
+                                FontFamily="Poppins-Light"
+                                VerticalOptions="CenterAndExpand"
+                                x:Name="ReceiverTextBox"
+                                FontSize="Small"
+                                Placeholder="Enter receiver"
+                                TextColor="Black"
+                                />-->
+                </Frame>
+            </StackLayout>
+
+            <!--<StackLayout Margin="0,20,0,0" IsVisible="{Binding SentVisible}">
+                <Label Text="Sent to"
+                           FontSize="18"
+                           FontFamily="Poppins-Light"
+                           Margin="30,0"
+                           TextColor="Black"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,0">
+                    <controls:CustomEntry
+                                FontFamily="Poppins-Light"
+                                VerticalOptions="CenterAndExpand"
+                                x:Name="SentTextBox"
+                                FontSize="Small"
+                                Placeholder="Enter Receiver Name"
+                                TextColor="Black"
+                                />
+                </Frame>
+            </StackLayout>-->
+
+            <StackLayout HorizontalOptions="FillAndExpand"
+                             VerticalOptions="Center"
+                             Spacing="10"
+                             Margin="0,20,0,5">
+                <Label Text="Expected Delivery date" FontSize="18" Margin="30,0" TextColor="Black" FontFamily="Poppins-Light"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,0">
+                    <DatePicker x:Name="expName" ></DatePicker>
+                    
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="Courier name"
+                           FontSize="18"
+                           FontFamily="Poppins-Light"
+                           Margin="30,0"
+                           TextColor="Black"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,0">
+                    <controls:CustomEntry
+                                FontFamily="Poppins-Light"
+                                VerticalOptions="CenterAndExpand"
+                                x:Name="CourierTextBox"
+                                FontSize="Small"
+                                Placeholder="Enter name"
+                                TextColor="Black"
+                                />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="Courier Contact"
+                           FontSize="18"
+                           FontFamily="Poppins-Light"
+                           Margin="30,0"
+                           TextColor="Black"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,0">
+                    <controls:CustomEntry
+                                FontFamily="Poppins-Light"
+                                VerticalOptions="CenterAndExpand"
+                                x:Name="ContactTextBox" 
+                                Keyboard="Numeric"
+                                FontSize="Small"
+                                Placeholder="Enter contact"
+                                TextColor="Black"
+                                />
+                </Frame>
+            </StackLayout>
+
+            <StackLayout Margin="0,20,0,0">
+                <Label Text="Note"
+                           FontSize="18"
+                           FontFamily="Poppins-Light"
+                           Margin="30,0"
+                           TextColor="Black"/>
+                <Frame Margin="20,0" CornerRadius="10" HeightRequest="50" HorizontalOptions="Fill" Padding="10,10">
+                    <controls:CustomEntry
+                                FontFamily="Poppins-Light"
+                                VerticalOptions="CenterAndExpand"
+                                FontSize="Small"
+                                x:Name="NoteTextBox"
+                                Placeholder="Transfer note"
+                                TextColor="Black"
+                                />
+                </Frame>
+            </StackLayout>
+
+            <Button Text="Review transaction" BackgroundColor="{StaticResource PrimaryColor}" 
+                        Margin="20,20,20,20" 
+                        HeightRequest="50"
+                        FontSize="Subtitle"
+                        FontFamily="Poppins-Light"
+                        Clicked="Click_Behind"
+                        CornerRadius="10"
+                        TextColor="White"/>
+        </FlexLayout>
+    </ScrollView>
+</ContentPage>

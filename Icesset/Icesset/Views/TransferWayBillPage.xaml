@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Icesset.Views.TransferWayBillPage">
+
+
+    <Grid>
+        <StackLayout>
+            <StackLayout Spacing="5" Grid.Row="0" Margin="10,10,10,0">
+                <FlexLayout AlignItems="Center">
+                    <Label Text="Sent on:" TextColor="Black"/>
+                    <Label Text="{Binding transactionDate}" Padding="5,0" TextColor="#540D6E"/>
+                    <Image Source="Waybill.png" Margin="60,0,0,0" HeightRequest="18" WidthRequest="18"/>
+                </FlexLayout>
+                <FlexLayout>
+                    <Label Text="Status:" TextColor="Black"/>
+                    <Label Text="{Binding transaction_status}" Padding="5,0" TextColor="Red"/>
+                </FlexLayout>
+            </StackLayout>
+            <Line X1="0"
+                  Y1="0"
+                  X2="400"
+                  Y2="0"
+                  Stroke="gray" />
+            <StackLayout>
+                <FlexLayout JustifyContent="SpaceBetween" Margin="10,10,10,0">
+                    <Label Text="From" FontSize="Subtitle" TextColor="#540D6E"/>
+                    <Label Text="{Binding created_by_name}" FontSize="Subtitle" TextColor="#540D6E"/>
+                </FlexLayout>
+                <FlexLayout JustifyContent="SpaceBetween" Margin="10,0,10,10">
+                    <Label Text="Sent to" FontSize="Subtitle" TextColor="#540D6E"/>
+                    <StackLayout>
+                        <Label Text="{Binding sent_to_name}" FontSize="Subtitle" TextColor="#540D6E"/>
+                        <Label Text="{Binding destination}" Padding="0" TextColor="Black"/>
+                    </StackLayout>
+                </FlexLayout>
+                <Line X1="0"
+                      Y1="0"
+                      X2="400"
+                      Y2="0"
+                      Stroke="gray" />
+            </StackLayout>
+            <StackLayout>
+                <FlexLayout JustifyContent="SpaceBetween" Margin="10,10,10,5">
+                    <Label Text="Items" TextColor="Black" FontAttributes="Bold" FontSize="Subtitle"/>
+                    <Label Text="Description" TextColor="Black" FontAttributes="Bold" FontSize="Subtitle"/>
+                    <Label Text="Store" TextColor="Black" FontAttributes="Bold" FontSize="Subtitle"/>
+                </FlexLayout>
+
+                <StackLayout Orientation="Vertical"
+                             BindableLayout.ItemsSource="{Binding newTransact}" Spacing="2" Margin="0,0,0,10">
+                    <BindableLayout.ItemTemplate>
+                        <DataTemplate>
+                            <FlexLayout JustifyContent="SpaceBetween" Margin="10,5,10,0">
+                                <StackLayout Orientation="Horizontal">
+                                    <Label Text="{Binding quantity}" TextColor="Black"/>
+                                    <Label Text="{Binding item_name}" TextColor="Black" Margin="-5,0,0,0"/>
+                                </StackLayout>
+                                <Label Text="{Binding description}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+                                <Label Text="{Binding store_name}" TextColor="Black" HorizontalOptions="EndAndExpand"/>
+                            </FlexLayout>
+                        </DataTemplate>
+                    </BindableLayout.ItemTemplate>
+                </StackLayout>
+                <Line X1="0"
+                      Y1="0"
+                      X2="400"
+                      Y2="0"
+                      Stroke="gray"
+                      StrokeDashArray="1,1"
+                      StrokeDashOffset="2"/>
+            </StackLayout>
+            <StackLayout Margin="10">
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Text="Courier Name:" TextColor="Black"/>
+                    <Label Text="{Binding courier_name}" TextColor="Black"/>
+                </FlexLayout>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Text="Courier Contact:" TextColor="Black"/>
+                    <Label Text="{Binding courier_contact}" TextColor="Black"/>
+                </FlexLayout>
+                <FlexLayout JustifyContent="SpaceBetween">
+                    <Label Text="Waybill Id:" TextColor="Black"/>
+                    <Label Text="{Binding waybill_id}" TextColor="Black"/>
+                </FlexLayout>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="Note:" TextColor="Black"/>
+                    <Label Text="{Binding note}" TextColor="#540D6E"/>
+                </StackLayout>
+            </StackLayout>
+            <Frame WidthRequest="40" Margin="200,0,10,0" HeightRequest="30" Padding="-10,0" 
+                                           FlowDirection="LeftToRight" CornerRadius="5" BackgroundColor="#540D6E"
+                                           IsVisible="{Binding CollectVisible}"  >
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding Path=BindingContext.CollectCommand, Source={x:Reference transact}}" CommandParameter="{Binding .}"/>
+                </Frame.GestureRecognizers>
+                <Label Text="Collect" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" TextColor="White"/>
+            </Frame>
+        </StackLayout>
+
+    </Grid>
+</ContentPage>

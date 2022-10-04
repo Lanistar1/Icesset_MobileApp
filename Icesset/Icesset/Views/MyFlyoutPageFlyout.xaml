@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Icesset.Views.MyFlyoutPageFlyout"
+             BackgroundColor="{StaticResource PrimaryColor}"
+             Title="Flyout">
+  <StackLayout>
+    <ListView x:Name="MenuItemsListView"
+              SeparatorVisibility="None"
+              HasUnevenRows="true"
+              ItemsSource="{Binding MenuItems}">
+            <ListView.Header>
+                <Grid BackgroundColor="{StaticResource SecondaryColor}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="10"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10"/>
+                        <RowDefinition Height="80"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="10"/>
+                    </Grid.RowDefinitions>
+
+                    <Image Source="logonew.png"
+                           Grid.Column="1"
+                           Margin="10,0"
+                           WidthRequest="150"
+                           VerticalOptions="StartAndExpand"
+                           HeightRequest="150"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Row="1"/>
+
+                    <Label Grid.Column="1"
+                            Grid.Row="2"
+                            Text="Icesset"
+                            Margin="30,0"
+                            FontSize="20"
+                            HorizontalOptions="StartAndExpand"
+                            FontAttributes="Bold"
+                            FontFamily="Poppins-Light"
+                            TextColor="Black"
+                            Style="{DynamicResource SubtitleStyle}"/>
+                </Grid>
+            </ListView.Header>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="15,10" HorizontalOptions="FillAndExpand">
+                            <!--<Label VerticalOptions="FillAndExpand" 
+                            VerticalTextAlignment="Center" 
+                            Text="{Binding Title}" 
+                            FontSize="24"/>-->
+                            <Grid Padding="10,10"
+                                  Margin="20,0"
+                                  VerticalOptions="Center">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image VerticalOptions="Center" HeightRequest="20" WidthRequest="20"  Source="{Binding IconSource}"/>
+                                <Label VerticalOptions="Center" FontFamily="Poppins-Light" FontAttributes="None" Grid.Column="1" TextColor="White" Padding="10,0" FontSize="Subtitle" Text="{Binding Title}"/>
+                            </Grid>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+    </ListView>
+  </StackLayout>
+</ContentPage>

@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Icesset.ViewModels"
+             BackgroundColor="#cbc3e3"
+             Title="Review Transaction"
+             x:Class="Icesset.Views.ReviewTransactionPage">
+
+    <!--<ContentPage.BindingContext>
+        <local:ReviewViewModel/>
+    </ContentPage.BindingContext>-->
+    
+    <ScrollView>
+        <Grid Margin="15">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Frame Grid.Row="0" VerticalOptions="StartAndExpand" HeightRequest="250"  CornerRadius="10">
+                <CollectionView x:Name="select" ItemsSource="{Binding Select}">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <FlexLayout Direction="Column">
+                                <StackLayout Orientation="Horizontal" Margin="0,5">
+                                    <Label Text="{Binding Quantity}" TextColor="Purple" FontFamily="Poppins-Light" FontSize="Subtitle" FontAttributes="Bold"/>
+                                    <Label Text="{Binding item_name}" TextColor="Purple" FontFamily="Poppins-Light" FontSize="Subtitle" FontAttributes="Bold"/>
+                                </StackLayout> 
+                                <StackLayout VerticalOptions="Start" Margin="0,0,0,8">
+                                    <Label Text="Location" TextColor="Black" FontFamily="Poppins-Light" FontSize="Subtitle"/>
+                                    <Label Text="{Binding store_name}" TextColor="Black" FontFamily="Poppins-Light" FontSize="Subtitle" Margin="0,-8,0,0"/>
+                                </StackLayout>
+                                <Line X1="0"
+                                      Y1="0"
+                                      X2="400"
+                                      Y2="0"
+                                      Stroke="gray" />
+                            </FlexLayout>
+                            
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </Frame>
+
+            <Frame Grid.Row="1" CornerRadius="10" HeightRequest="600" Margin="0,-6,0,40">
+                <FlexLayout Direction="Column">
+                    <StackLayout Margin="0,20">
+                        <Label Text="Transaction Type" Padding="0" FontSize="Subtitle" TextColor="Black"/>
+                        <Label x:Name="MyTransaction" FontSize="Medium" TextColor="#540D6E"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,20" Padding="0">
+                        <Label Text="Destination" Padding="0,-3" FontSize="Subtitle" TextColor="Black"/>
+                        <Label x:Name="MyLabel" FontSize="Medium" TextColor="#540D6E"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,20">
+                        <Label Text="Receiver" Padding="0,-3" FontSize="Subtitle" TextColor="Black"/>
+                        <Label x:Name="MyReceive" FontSize="Medium" TextColor="#540D6E"/>
+                    </StackLayout><StackLayout Margin="0,20">
+                        <Label Text="Expected Delivery Date" Padding="0,-3" FontSize="Subtitle" TextColor="Black"/>
+                        <Label x:Name="MyExpected" FontSize="Medium" TextColor="#540D6E"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,20">
+                        <Label Text="Courier Name" Padding="0,-3" FontSize="Subtitle" TextColor="Black"/>
+                        <Label x:Name="MyName" FontSize="Medium" TextColor="#540D6E"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,20">
+                        <Label Text="Courier Contact" Padding="0,-3" FontSize="Subtitle" TextColor="Black"/>
+                        <Label x:Name="MyContact" FontSize="Medium" TextColor="#540D6E"/>
+                    </StackLayout>
+                    <StackLayout Margin="0,20">
+                        <Label Text="Note" Padding="0,-3" FontSize="Subtitle" TextColor="Black"/>
+                        <Label x:Name="MyNote" FontSize="Medium" TextColor="#540D6E"/>
+                    </StackLayout>
+                    <Button Text="Transfer batch"
+                            HeightRequest="60"  
+                            Command="{Binding TransferCommand}"
+                            BackgroundColor="#540D6E" 
+                            CornerRadius="10" Margin="0,40,0,20" 
+                            TextColor="White"/>
+
+                </FlexLayout>
+
+            </Frame>
+        </Grid>
+    </ScrollView>
+</ContentPage>

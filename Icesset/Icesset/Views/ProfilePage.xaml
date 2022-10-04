@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title=" My Profile"
+             BackgroundColor="#cbc3e3"
+             x:Class="Icesset.Views.ProfilePage">
+
+    <ScrollView>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackLayout Grid.Row="0">
+                <Image Source="profile.png" WidthRequest="150" HeightRequest="150" Margin="0,20,0,0"/>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Label Text="{Binding FirstName}" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="#540D6E" Margin="0,5"/>
+                    <Label Text="{Binding LastName}" HorizontalTextAlignment="Center" FontSize="Medium" TextColor="#540D6E" Margin="0,5"/>
+                </StackLayout>
+                
+                <FlexLayout Margin="20,10,0,10" AlignItems="Center">
+                    <Image Source="envelope.png" WidthRequest="20" HeightRequest="20"/>
+                    <Label Text="{Binding Email}" Padding="15,0" FontSize="Medium" TextColor="Black"/>
+                </FlexLayout>
+                <Line X1="0"
+                                  Y1="0"
+                                  X2="400"
+                                  Y2="0"
+                                  Stroke="gray"/>
+
+                <FlexLayout Margin="20,10,0,10" AlignItems="Center">
+                    <Image Source="phone.png" WidthRequest="20" HeightRequest="20"/>
+                    <Label Text="{Binding MobilePhone}" Padding="15,0" FontSize="Medium" TextColor="Black"/>
+                </FlexLayout>
+                <Line X1="0"
+                                  Y1="0"
+                                  X2="400"
+                                  Y2="0"
+                                  Stroke="gray"/>
+                <FlexLayout Margin="20,10,0,10" AlignItems="Center">
+                    <Image Source="role.png" WidthRequest="20" HeightRequest="20"/>
+                    <Label Text="{Binding Role}" Padding="15,0" FontSize="Medium" TextColor="Black"/>
+                </FlexLayout>
+                <Line X1="0"
+                                  Y1="0"
+                                  X2="400"
+                                  Y2="0"
+                                  Stroke="gray"/>
+
+                <FlexLayout Margin="20,10,0,0" AlignItems="Center">
+                    <Image Source="active.png" WidthRequest="20" HeightRequest="20"/>
+                    <Label Text="{Binding UserStatus}" Padding="15,0" FontSize="Medium" TextColor="Black"/>
+                </FlexLayout>
+                <Line X1="0"
+                                  Y1="0"
+                                  X2="400"
+                                  Y2="0"
+                                  Stroke="gray"/>
+            </StackLayout>
+        </Grid>
+        <StackLayout Grid.Row="1" Margin="0,60,0,0">
+            <Label Text="Click the button to change your Password" Margin="20,5" FontSize="Subtitle"/>
+
+            <Frame HeightRequest="50" Margin="20,0" Padding="10,0" CornerRadius="10">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="Tapped_Password"/>
+                </Frame.GestureRecognizers>
+                <FlexLayout Margin="0,0,0,0" AlignItems="Center" JustifyContent="SpaceBetween">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="vector.png" WidthRequest="20" HeightRequest="20"/>
+                        <Label Text="Password Settings" Padding="15,0" FontSize="Medium" TextColor="Black"/>
+                    </StackLayout>
+                    <Image Source="right.png" WidthRequest="20" HeightRequest="20"/>
+                </FlexLayout>
+            </Frame>
+        </StackLayout>
+    </Grid>
+    </ScrollView>
+</ContentPage>

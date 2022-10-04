@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             NavigationPage.HasNavigationBar="False"
+             BackgroundColor="LightGray"
+             x:Class="Icesset.Views.SuccessPage">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Frame BackgroundColor="#540D6E" Grid.Row="0" Padding="0,10" >
+            <Label Text="Success" HorizontalTextAlignment="Center"  TextColor="White" FontSize="Large"/>
+        </Frame>
+
+        <Frame Margin="20" CornerRadius="10" Grid.Row="1" HeightRequest="250">
+            <FlexLayout Direction="Column">
+                <StackLayout>
+                    <Frame HorizontalOptions="Center" CornerRadius="50" HeightRequest="20" WidthRequest="20" BorderColor="#540D6E">
+                        <Image Source="mark.png"/>
+                    </Frame>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Transfer Completed!" TextColor="#540D6E" FontSize="Medium" HorizontalTextAlignment="Center" Margin="0,20"/>
+
+                    <Label Text=" You have successfully" HorizontalTextAlignment="Center" FontSize="Subtitle" TextColor="Black"/>
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                        <Label Text="transfer " FontSize="Subtitle" TextColor="Black"/>
+                        <Label Text="{Binding Selected}" FontSize="Subtitle" TextColor="Black"/>
+                        <Label Text="Items" FontSize="Subtitle" TextColor="Black"/>
+                    </StackLayout>
+                    
+                </StackLayout>
+                <Button Text="Done" Clicked="Done" TextColor="white" BackgroundColor="#540D6E" CornerRadius="10" Margin="20,20,20,0"/>
+            </FlexLayout>
+        </Frame>
+    </Grid>
+</ContentPage>

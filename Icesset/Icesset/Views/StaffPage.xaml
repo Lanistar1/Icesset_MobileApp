@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:Icesset.Controls"
+             BackgroundColor="#cbc3e3"
+             x:Class="Icesset.Views.StaffPage">
+
+    <ScrollView>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Frame CornerRadius="9" HeightRequest="40" Padding="20,0" Grid.Row="0">
+
+                <controls:CustomEntry 
+                              VerticalTextAlignment="Center"
+                              HorizontalTextAlignment="Start"
+                              Placeholder="Search Staff..."
+                              FontFamily="Poppins-Light"
+                              FontSize="Small"
+                              MaxLength="4"
+                              Text="{Binding SearchEntry, Mode=TwoWay}"
+                              TextColor="Black"/>
+            </Frame>
+
+            <CollectionView x:Name="staff" 
+                             ItemsSource="{Binding Staff, Mode=TwoWay}" 
+                             Margin="0,20,0,10" Grid.Row="1">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout>
+                            <Frame CornerRadius="10">
+                                <StackLayout Orientation="Horizontal" Spacing="20">
+                                    <!--<Frame HeightRequest="80" WidthRequest="80" CornerRadius="100" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0" BackgroundColor="Maroon">
+                                        <Label Text="hope" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                                    </Frame>-->
+                                    <Image Source="account22.png" WidthRequest="50" HeightRequest="50"/>
+                                    <StackLayout>
+                                        <FlexLayout>
+                                            <Label Text="{Binding firstName}" TextColor="#540D6E" FontSize="Subtitle"/>
+                                            <Label Text="{Binding lastName}" Margin="5,0,0,0" TextColor="#540D6E" FontSize="Subtitle"/>
+                                        </FlexLayout>
+                                        <Label Text="{Binding mobilePhone}" TextColor="Black"/>
+                                        <Label Text="{Binding role}" TextColor="Black"/>
+                                    </StackLayout>
+                                    <StackLayout HorizontalOptions="EndAndExpand">
+                                        <Label HorizontalTextAlignment="End" Text="{Binding userStatus}" Margin=" 10,52,0,0" TextColor="#540D6E" FontSize="Small"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </Grid>
+    </ScrollView>
+</ContentPage>

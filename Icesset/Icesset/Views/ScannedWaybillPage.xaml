@@ -1,0 +1,116 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Icesset.Views.ScannedWaybillPage">
+
+
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+
+        <CollectionView Grid.Row="0" x:Name="scannedWaybill" ItemsSource="{Binding ScannedWaybill}" Margin="0,0,0,50">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame VerticalOptions="StartAndExpand" CornerRadius="5" Padding="0" Margin="0,0,0,20">
+                        <Grid>
+                            <StackLayout>
+                                <StackLayout Spacing="5" Grid.Row="0" Margin="10,10,10,0">
+                                    <FlexLayout AlignItems="Center">
+                                        <Label Text="Sent on:" TextColor="Black"/>
+                                        <Label Text="{Binding transactionDate}" Padding="5,0" TextColor="#540D6E"/>
+                                        <Image Source="Waybill.png" Margin="60,0,0,0" HeightRequest="25" WidthRequest="25"/>
+                                    </FlexLayout>
+                                    <FlexLayout>
+                                        <Label Text="Status:" TextColor="Black"/>
+                                        <Label Text="{Binding transaction_status}" Padding="5,0" TextColor="Red"/>
+                                    </FlexLayout>
+                                </StackLayout>
+                                <Line X1="0"
+                                      Y1="0"
+                                      X2="400"
+                                      Y2="0"
+                                      Stroke="gray" />
+                                <StackLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween" Margin="10,10,10,0">
+                                        <Label Text="From" FontSize="Subtitle" TextColor="#540D6E"/>
+                                        <Label Text="{Binding created_by_name}" FontSize="Subtitle" TextColor="#540D6E"/>
+                                    </FlexLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween" Margin="10,0,10,10">
+                                        <Label Text="Sent to" FontSize="Subtitle" TextColor="#540D6E"/>
+                                        <StackLayout>
+                                            <Label Text="{Binding sent_to_name}" FontSize="Subtitle" TextColor="#540D6E"/>
+                                            <Label Text="{Binding destination}" Padding="0" TextColor="Black"/>
+                                        </StackLayout>
+                                    </FlexLayout>
+                                    <Line X1="0"
+                                              Y1="0"
+                                              X2="400"
+                                              Y2="0"
+                                              Stroke="gray" />
+                                </StackLayout>
+                                <StackLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween" Margin="10,10,10,5">
+                                        <Label Text="Items" TextColor="Black" FontAttributes="Bold" FontSize="Subtitle"/>
+                                        <Label Text="Description" TextColor="Black" FontAttributes="Bold" FontSize="Subtitle"/>
+                                        <Label Text="Store" TextColor="Black" FontAttributes="Bold" FontSize="Subtitle"/>
+                                    </FlexLayout>
+
+                                    <StackLayout Orientation="Vertical"
+                                                     BindableLayout.ItemsSource="{Binding data}" Spacing="2" Margin="0,0,0,10">
+                                        <BindableLayout.ItemTemplate>
+                                            <DataTemplate>
+                                                <FlexLayout JustifyContent="SpaceBetween" Margin="10,5,10,0">
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <Label Text="{Binding quantity}" TextColor="Black"/>
+                                                        <Label Text="{Binding item_name}" TextColor="Black" Margin="-2,0,0,0"/>
+                                                    </StackLayout>
+                                                    <Label Text="{Binding description}" TextColor="Black" HorizontalOptions="EndAndExpand" />
+                                                    <Label Text="{Binding store_name}" TextColor="Black" HorizontalOptions="EndAndExpand"/>
+                                                </FlexLayout>
+                                            </DataTemplate>
+                                        </BindableLayout.ItemTemplate>
+                                    </StackLayout>
+                                    <Line X1="0"
+                                              Y1="0"
+                                              X2="400"
+                                              Y2="0"
+                                              Stroke="gray"
+                                              StrokeDashArray="1,1"
+                                              StrokeDashOffset="2"/>
+                                </StackLayout>
+                                <StackLayout Margin="10">
+                                    <FlexLayout JustifyContent="SpaceBetween">
+                                        <Label Text="Courier Name:" TextColor="Black"/>
+                                        <Label Text="{Binding courier_name}" TextColor="Black"/>
+                                    </FlexLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween">
+                                        <Label Text="Courier Contact:" TextColor="Black"/>
+                                        <Label Text="{Binding courier_contact}" TextColor="Black"/>
+                                    </FlexLayout>
+                                    <FlexLayout JustifyContent="SpaceBetween">
+                                        <Label Text="Waybill Id:" TextColor="Black"/>
+                                        <Label Text="{Binding waybill_id}" TextColor="Black"/>
+                                    </FlexLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Note:" TextColor="Black"/>
+                                        <Label Text="{Binding note}" TextColor="#540D6E"/>
+                                    </StackLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="Store-In:" TextColor="Black"/>
+                                        <Label Text="{Binding stored_in}" TextColor="Black"/>
+                                    </StackLayout>
+                                </StackLayout>
+                            </StackLayout>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

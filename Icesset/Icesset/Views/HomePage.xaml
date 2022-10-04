@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="{StaticResource SecondaryColor}"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Icesset.Views.HomePage">
+
+    <ScrollView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <Image Grid.Row="0" 
+               Source="top.png"
+               HorizontalOptions="Fill"
+               
+               />
+        <FlexLayout Grid.Row="1"
+                    Direction="Column">
+            <StackLayout Spacing="0">
+                <Image Source="logonew.png"
+                       HorizontalOptions="Center"
+                       WidthRequest="100"
+                       HeightRequest="100"/>
+
+                <Label Text="Icesset"
+                       TextColor="Black"
+                       HorizontalOptions="Center"
+                       FontSize="28"
+                       FontFamily="Poppins-Light"
+                       FontAttributes="Bold"/>
+            </StackLayout>
+
+            <Label Text="Effective Asset Manager"
+                   TextColor="#540d6e"
+                   FontFamily="Poppins-Light"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,20,0,20"/>
+
+            <Button Text="Get Started"
+                    BackgroundColor="#f15025"
+                    FontAttributes="Bold"
+                    TextColor="White"
+                    CornerRadius="20"
+                    Clicked="Click_Me"
+                    FontFamily="Poppins-Light"
+                    HorizontalOptions="Center"
+                    Margin="40,20"/>
+        </FlexLayout>
+
+        <Image Source="Rectanglebottom.png"
+               Grid.Row="2"
+               HorizontalOptions="Fill"
+               VerticalOptions="EndAndExpand"/>
+    </Grid>
+    </ScrollView>
+</ContentPage>

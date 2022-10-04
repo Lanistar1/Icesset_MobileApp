@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#cbc3e3"
+             Title="Item Details"
+             x:Class="Icesset.Views.ItemsDetailPage">
+
+        <CollectionView x:Name="details" ItemsSource="{Binding Details}" Margin="10,40">
+            <CollectionView.ItemsLayout>
+                <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Frame CornerRadius="10" Margin="10" Padding="0">
+                        <FlexLayout Direction="Column">
+                            <StackLayout Margin="0,20,0,20">
+                            <Label Text="Item" TextColor="Black" FontSize="Small" Margin="10,0"/>
+                            <Label Text="{Binding item_name}" TextColor="#540D6E" FontSize="Subtitle" Margin="10,0"/>
+                            <Line X1="0"
+                              Y1="0"
+                              X2="400"
+                              Y2="0"
+                              Stroke="gray" />
+                        </StackLayout>
+                        
+                        <StackLayout Margin="0,0,0,20">
+                            <Label Text="Category" TextColor="Black" FontSize="Small" Margin="10,0"/>
+                            <Label Text="{Binding category}" TextColor="#540D6E" FontSize="Subtitle" Margin="10,0"/>
+                            <Line X1="0"
+                              Y1="0"
+                              X2="400"
+                              Y2="0"
+                              Stroke="gray" />
+                            </StackLayout>
+                            <StackLayout Margin="0,0,0,20">
+                            <Label Text="Location" TextColor="Black" FontSize="Small" Margin="10,0"/>
+                            <Label Text="{Binding store_name}" TextColor="#540D6E" FontSize="Subtitle" Margin="10,0"/>
+                            <Line X1="0"
+                              Y1="0"
+                              X2="400"
+                              Y2="0"
+                              Stroke="gray" />
+                            </StackLayout>
+                            <StackLayout Margin="0,0,0,10">
+                            <Label Text="Description" TextColor="Black" FontSize="Small" Margin="10,0"/>
+                            <Label Text="{Binding description}" TextColor="#540D6E" FontSize="Subtitle" Margin="10,0"/>
+                            <Line X1="0"
+                              Y1="0"
+                              X2="400"
+                              Y2="0"
+                              Stroke="gray" />
+                            </StackLayout>
+                        </FlexLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    
+</ContentPage>

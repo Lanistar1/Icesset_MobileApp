@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:Icesset.ViewModels" 
+             xmlns:converter="clr-namespace:Icesset.Converters" 
+             xmlns:controls="clr-namespace:Icesset.Controls"
+             NavigationPage.HasNavigationBar="True"
+             BackgroundColor="#cbc3e3"
+             Title="ItemsPage"
+             x:Class="Icesset.Views.ItemsPage">
+    <ContentPage.Resources>
+        <converter:BooleanToImageConverter x:Key="imageConverter"/>
+    </ContentPage.Resources>
+    <ContentPage.Content>
+            <ScrollView>
+                <Grid Margin="10,20">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <Frame CornerRadius="9" HeightRequest="40" Padding="20,0" Grid.Row="0">
+
+                    <controls:CustomEntry 
+                              VerticalTextAlignment="Center"
+                              HorizontalTextAlignment="Start"
+                              Placeholder="Search Items..."
+                              FontFamily="Poppins-Light"
+                              FontSize="Small"
+                              Text="{Binding SearchEntry, Mode=TwoWay}"
+                              TextColor="Black"/>
+                </Frame>
+
+                    <FlexLayout JustifyContent="SpaceBetween" Grid.Row="1" Margin="0,5">
+                        <Label IsVisible="{Binding ChangeVisible}" Text="Transfer" TextColor="Black" Margin="0,10"/>
+                        <Label TextColor="Black" Margin="0,10" IsVisible="{Binding ShowCounter}" FontSize="Medium">
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Selected : "/>
+                                <Span Text="{Binding SelectedItemCount}"/>
+                                <Span Text="  Items"/>
+                            </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                        <Button Text="Proceed" Command="{Binding ProceedCommand}" 
+                            IsVisible="{Binding Path=BindingContext.ProceedVisible, Source={x:Reference getItems}}"  
+                            HeightRequest="40" WidthRequest="100" CornerRadius="10" BackgroundColor="White"/>
+                    </FlexLayout>
+
+                    <CollectionView x:Name="getItems" 
+                             ItemsSource="{Binding GetItems, Mode=TwoWay}" 
+                             Margin="0,60,0,10" Grid.Row="1">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout>
+                                    <Frame CornerRadius="10" Padding="10" HeightRequest="100">
+                                        <Frame.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.TouchCommand, Source={x:Reference getItems}}" CommandParameter="{Binding .}"/>
+                                            <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+                                        </Frame.GestureRecognizers>
+                                        <StackLayout>
+                                            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                                            <Grid>
+                                                <Frame HeightRequest="40" WidthRequest="90" CornerRadius="50" HorizontalOptions="StartAndExpand" 
+                                                       VerticalOptions="StartAndExpand" Margin="0" Padding="0" BackgroundColor="Maroon" 
+                                                       IsVisible="{Binding FrameChecked}">
+                                                    <Label Text="{Binding quantity}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                </Frame>
+                                                <Image Source="checkItem.png" IsVisible="{Binding ImageChecked}" WidthRequest="100" HeightRequest="100"/>
+                                            </Grid>
+                                                <StackLayout>
+                                                    <FlexLayout JustifyContent="SpaceBetween" Margin="30,0,0,0">
+                                                        <Label Text="{Binding item_name}" TextColor="Black" FontSize="Subtitle"/>
+
+                                                    <Grid>
+                                                        <Frame WidthRequest="45" HeightRequest="30" Padding="0" HasShadow="True" Margin="0,0,0,0"
+                                                               HorizontalOptions="EndAndExpand" IsVisible="{Binding ButtonShow}"
+                                                               IsEnabled="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}"
+                                                               BackgroundColor="MediumPurple">
+                                                            <Label Text="+" TextColor="White" HorizontalTextAlignment="Center" FontSize="15" VerticalTextAlignment="Center"/>
+                                                            <Frame.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}" CommandParameter="{Binding .}"/>
+                                                            </Frame.GestureRecognizers>
+                                                        </Frame>
+                                                        <Frame WidthRequest="45" HeightRequest="30" Padding="0" HasShadow="True" Margin="0,0,0,0" 
+                                                               HorizontalOptions="EndAndExpand" IsVisible="{Binding ButtonHide}"
+                                                               IsEnabled="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}"
+                                                               BackgroundColor="MediumPurple">
+                                                            <Label Text="-" TextColor="White" FontAttributes="Bold" HorizontalTextAlignment="Center" FontSize="20" VerticalTextAlignment="Center"/>
+                                                            <Frame.GestureRecognizers>
+                                                                <TapGestureRecognizer NumberOfTapsRequired="1" Command="{Binding Path=BindingContext.ItemChangeCommand, Source={x:Reference getItems}}" CommandParameter="{Binding .}"/>
+                                                            </Frame.GestureRecognizers>
+                                                        </Frame>
+                                                    </Grid>
+
+                                                    <!--<Button Text="ADD"
+                                                            FontSize="Small"
+                                                            Padding="-5"
+                                                            IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}"  
+                                                            WidthRequest="50"
+                                                            HeightRequest="30"
+                                                            TextColor="Purple"
+                                                            BorderColor="Purple"
+                                                            BackgroundColor="Transparent"
+                                                            BorderWidth="1"
+                                                            CommandParameter="{Binding .}"
+                                                            Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}"/>-->
+                                                    </FlexLayout>
+                                                    <StackLayout Orientation="Horizontal">
+                                                        <StackLayout Margin="30,0,0,-5">
+                                                            <Label Text="Category" Margin="0,0,0,-15"/>
+                                                            <Label Text="{Binding category}" Margin="0,5,0,0" FontSize="Subtitle" TextColor="Purple"/>
+                                                        </StackLayout>
+                                                        <StackLayout HorizontalOptions="FillAndExpand">
+                                                            <Label Text="Status" Padding="0,0" Margin="85,0,0,-15" HorizontalTextAlignment="End"/>
+                                                        <Label Text="{Binding item_status}" Margin="60,5,0,0" HorizontalTextAlignment="End" Padding="0,0" FontSize="Subtitle" TextColor="Purple"/>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </FlexLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </StackLayout>
+
+
+                                <!--<StackLayout>
+                                <Frame CornerRadius="10" Padding="10">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.TouchCommand, Source={x:Reference getItems}}" CommandParameter="{Binding .}"/>
+                                        <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <FlexLayout AlignItems="Center">
+                                            <StackLayout>
+                                                <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0" BackgroundColor="Maroon">
+                                                    <Label Text="{Binding quantity}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                </Frame>-->
+                                <!--<Frame IsVisible="{Binding Path=BindingContext.ChangeVisible, Source={x:Reference getItems}}" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0" BackgroundColor="Maroon">
+                                                    <Label Text="{Binding quantity}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
+                                                </Frame>-->
+                                <!--<Frame IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" 
+                                               HasShadow="False"
+                                               BackgroundColor="Transparent"
+                                               HeightRequest="30" WidthRequest="30">
+                                                    <Grid>
+                                                        <Image HeightRequest="25"
+                                                   Source="{Binding isSelected, Converter={StaticResource imageConverter}}"
+                                                   WidthRequest="25"
+                                                      VerticalOptions="Center" HorizontalOptions="Center"/>
+                                                    </Grid>-->
+
+                                <!--<CheckBox IsChecked="{Binding isSelected}" IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+
+                                <!--<Frame.GestureRecognizers>
+                                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}"
+                                                                      NumberOfTapsRequired="1"
+                                                                      CommandParameter="{Binding .}"/>
+                                                    </Frame.GestureRecognizers>
+                                                </Frame>-->
+                                <!--<CheckBox IsChecked="{Binding isSelected}" IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" VerticalOptions="Center" HorizontalOptions="Center">
+                                            <CheckBox.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}"
+                                                                      NumberOfTapsRequired="1"
+                                                                      CommandParameter="{Binding .}"/>
+                                            </CheckBox.GestureRecognizers>
+                                        </CheckBox>-->
+                                <!--</StackLayout>
+                                            <StackLayout Margin="40,0,0,0">
+                                                <Grid>
+                                                    <Label Text="{Binding item_name}" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="Subtitle"/>
+                                                    <Button Text="ADD"
+                                                            FontSize="Small"
+                                                            HorizontalOptions="End"
+                                                            
+                                                            TextColor="Purple"-->
+                                <!--BorderColor="Purple"
+                                                            BackgroundColor="Transparent"
+                                                            BorderWidth="1"
+                                                            CommandParameter="{Binding .}"
+                                                            Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}"/>
+                                                </Grid>
+                                                
+                                                <Label Text="Category"/>
+                                            </StackLayout>
+                                            <StackLayout Margin="50,0,0,0">
+                                                <Label/>
+                                                <Label Text="Location" Padding="0,10"/>
+                                            </StackLayout>
+                                        </FlexLayout>
+                                        <FlexLayout  Margin="10,-15,10,5">
+                                            <Label Text="{Binding category}" Margin="71,0,0,0" FontSize="Subtitle" TextColor="Purple"/>
+                                            <Label Text="{Binding store_name}" Margin="20,0,0,0" Padding="0,0" FontSize="Subtitle" TextColor="Purple"/>
+                                        </FlexLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>-->
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </Grid>
+            </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

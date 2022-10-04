@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:pv="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             xmlns:controls="clr-namespace:Icesset.Controls" 
+             NavigationPage.HasNavigationBar="False"
+             xmlns:local="clr-namespace:Icesset.Views"
+             BackgroundColor="{StaticResource SecondaryColor}"
+             x:Class="Icesset.Views.LoginPage">
+
+    <ScrollView>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackLayout Grid.Row="0" Margin="20,30,30,20">
+
+            <Image Source="loginBanner.png" 
+                   HeightRequest="250"/>
+
+                <Grid Margin="15,0,0,-10">
+                    <Label Text="{Binding MessageLabel}"  TextColor="Green" IsVisible="{Binding IsMessageVisible}"/>
+                    <Label Text="{Binding MessageLabelColor}"  TextColor="Red" IsVisible="{Binding IsMessageVisible}"/>
+                </Grid>
+
+            </StackLayout>
+
+
+            <pv:PancakeView Grid.Row="1"
+                   HorizontalOptions="Fill"
+                   VerticalOptions="Fill"
+                   BackgroundColor="#cbc3e3"
+                   Padding="10, 0"
+                   CornerRadius="40,40,0,0">
+
+                
+                <FlexLayout Direction="Column">
+                <StackLayout Margin="10,50,10,0">
+                    <Label Text="Email"
+                       FontFamily="Poppins-Light"
+                       FontSize="18"
+                       Margin="20,0"
+                       TextColor="Black"/>
+
+                    <Frame CornerRadius="10"
+                       Margin="10,2"
+                       Padding="20,0"
+                       HeightRequest="50">
+                        <Grid>
+                            
+                            <controls:CustomEntry 
+                                VerticalOptions="CenterAndExpand"
+                                FontFamily="Poppins-Light"
+                                FontSize="Small"
+                                Keyboard="Email"
+                                BackgroundColor="{Binding EmailBackgroundColor}"
+                                Text="{Binding Email}"
+                                Placeholder="Enter Email address"
+                                TextColor="Black"
+                                />
+                        </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <StackLayout Margin="10,20,10,10">
+                    <Label Text="Password"
+                       FontSize="18"
+                       Margin="20,0"
+                       FontFamily="Poppins-Light"
+                       TextColor="Black"/>
+
+                    <Frame CornerRadius="10"
+                       Margin="10,2"
+                       Padding="20,0"
+                       HeightRequest="50">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="7*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+
+                            <controls:CustomEntry 
+                                VerticalOptions="CenterAndExpand"
+                                FontFamily="Poppins-Light"
+                                FontSize="Small" 
+                                Text="{Binding Password}"
+                                Placeholder="Enter your Password"
+                                TextColor="Black"
+                                Grid.Column="0"
+                                IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}"
+                                />
+
+                                <ImageButton  Grid.Column="1"
+                                              BackgroundColor="Transparent"
+                                              Margin="0,0,10,0"
+                                              HeightRequest="20"
+                                              HorizontalOptions="End"
+                                              Source="hidden">
+                                    <ImageButton.Triggers>
+                                        <EventTrigger Event="Clicked">
+                                            <local:ShowPasswordTriggerAction ShowIcon="eyess"
+                                                                             HideIcon="hidden"
+                                                                             x:Name="ShowPasswordActualTrigger"/>
+                                        </EventTrigger>
+                                    </ImageButton.Triggers>
+                                </ImageButton>
+                            </Grid>
+                    </Frame>
+                </StackLayout>
+
+                <Label HorizontalOptions="CenterAndExpand" Margin="30,0,0,0" FontSize="Subtitle" FontFamily="Poppins-Light">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Forget Password? " />
+                        </FormattedString>
+                    </Label.FormattedText>
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+                    <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               IsVisible="{Binding IsBusy}"
+                               HeightRequest="30"
+                               WidthRequest="30"
+                               Color="OrangeRed"
+                               Margin="150,0,0,-10"
+                               HorizontalOptions="CenterAndExpand"
+                               />
+
+                    <Button Text="Login"
+                        Margin="30"
+                        FontSize="18"
+                        Padding="0,10"
+                        Command="{Binding LoginCommand}"
+                        CornerRadius="10"
+                        BackgroundColor="#f15025"
+                        FontFamily="Poppins-Light"
+                        TextColor="White"/>
+            </FlexLayout>
+            
+        </pv:PancakeView>
+        
+    </Grid>
+    </ScrollView>
+</ContentPage>

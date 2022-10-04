@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Icesset.Views.ReportPage">
+
+
+    <ScrollView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+
+            <WebView Source="https://test.metabase.astrapay.com.ng/public/dashboard/86703cc6-3296-4eba-90b5-f3f77ed36905"
+                WidthRequest="1300" HeightRequest="600" Grid.Row="0">
+            </WebView>
+
+            <WebView Source="https://test.metabase.astrapay.com.ng/public/dashboard/db74dbf3-6c0e-4770-9895-3bc2de989632"
+                WidthRequest="800" HeightRequest="560" Grid.Row="1">
+            </WebView>
+
+            <WebView Source="https://test.metabase.astrapay.com.ng/public/dashboard/012be616-7545-43dd-85f7-37be681a0ba8"
+                WidthRequest="800" HeightRequest="400" Grid.Row="2">
+            </WebView>
+
+            <WebView Source="https://test.metabase.astrapay.com.ng/public/dashboard/337c022c-56fe-48b3-a25e-6ce92db0e75d"
+                WidthRequest="800" HeightRequest="400" Grid.Row="3">
+            </WebView>
+
+        </Grid>
+    </ScrollView>
+    
+</ContentPage>
