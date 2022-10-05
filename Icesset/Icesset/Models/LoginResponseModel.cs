@@ -28,6 +28,14 @@ namespace Icesset.Models
         public string role { get; set; }
         public string userStatus { get; set; }
         public string dateCreated { get; set; }
+
+        public string fullname
+        {
+            get
+            {
+                return this.firstName + " " + this.lastName;
+            }
+        }
     }
     public class LoginResponseModel
     {

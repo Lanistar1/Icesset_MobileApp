@@ -5,6 +5,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,7 @@ namespace Icesset.ViewModels
                 OnPropertyChanged(nameof(Transact));
             }
         }
+
 
 
         private bool collectVisible = false;
@@ -155,11 +157,13 @@ namespace Icesset.ViewModels
                     foreach (var item in transacts)
                     {
                         item.data = new ObservableCollection<TransactItemData>(item.data);
+                        Constant.TransactItemData = item.data;
                         //item.newTransact = new ObservableCollection<TransactItemData>(item.data);
                     }
                     Console.WriteLine(transacts);
                     Transact = new ObservableCollection<Response> (transacts);
-                    Helps.Constant.Transact = new ObservableCollection<Response>(transacts);
+                    Helps.Constant.Transact = Transact;
+                    //Helps.Constant.Transact = new ObservableCollection<Response>(transacts);
                     Console.WriteLine(Transact);
                     Console.WriteLine("vdhvg hdsh");
                 }

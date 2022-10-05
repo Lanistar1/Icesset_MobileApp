@@ -104,10 +104,10 @@
                                         <Label Text="Note:" TextColor="Black"/>
                                         <Label Text="{Binding note}" TextColor="#540D6E"/>
                                     </StackLayout>
-                                    <FlexLayout>
-                                        <Label Text="StoreIn:"/>
-                                        <Label Text="{Binding stored_in}"/>
-                                    </FlexLayout>
+                                    <StackLayout Orientation="Horizontal">
+                                        <Label Text="StoreIn:" TextColor="Black"/>
+                                        <Label Text="{Binding stored_in}" TextColor="Black" Margin="3,0"/>
+                                    </StackLayout>
                                 </StackLayout>
 
 

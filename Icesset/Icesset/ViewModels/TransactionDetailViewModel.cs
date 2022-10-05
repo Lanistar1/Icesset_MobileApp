@@ -75,6 +75,7 @@ namespace Icesset.ViewModels
 
             IsBusy = true;
             SelectedItems = selectedItems;
+            Constant.ItemSelected = SelectedItems;
             //LotBill = newLotDetail;
             //BatchDetails = batchInfo;
             Transact = new ObservableCollection<Response>(SelectedItems);

@@ -20,6 +20,8 @@ namespace Icesset.Helps
         //public static List<string> UserList { get; set; }
         public static ObservableCollection<ItemData> SavedSelectedItems { get; set; }
         public static ObservableCollection<Response> Transact { get; set; }
+        public static ObservableCollection<Response> ItemSelected { get; set; }
+        public static ObservableCollection<TransactItemData> TransactItemData { get; set; }
         public static Response Transaction { get; set; }
         public static ObservableCollection<ItemData> GetItems { get; set; }
 

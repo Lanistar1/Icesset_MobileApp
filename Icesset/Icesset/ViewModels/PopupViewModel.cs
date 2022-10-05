@@ -149,12 +149,13 @@ namespace Icesset.ViewModels
                 HttpClient client = new HttpClient();
 
                 string transactionId = Constant.Transact.FirstOrDefault().transaction_id;
-                string receiveBy = Constant.Transact.FirstOrDefault().sent_to_name;
-                string userId = Constant.Transact.FirstOrDefault().sent_to_id;
-                string userName = Constant.Transact.FirstOrDefault().sent_to_name;
+                string receiveBy = Constant.CurrentUserData.info.fullname;
+                string userId = Constant.CurrentUserData.info.user_id;
+                string userName = Constant.CurrentUserData.info.fullname;
                 string storeName = Constant.selectedStore;
                 string storeId = Constant.selectedStoreId;
-                string qtyInLoc = Constant.Transact.FirstOrDefault().qyt_loc_id;
+                //string qtyInLoc = Constant.Transact.FirstOrDefault().qyt_loc_id;
+                string qtyInLoc = Constant.TransactItemData.FirstOrDefault().qyt_loc_id;
 
                 NewLotDetail newLotDetail = new NewLotDetail() {store_id = storeId, qyt_loc_id = qtyInLoc, store_name = storeName, user_id = userId, user_name = userName };
 
