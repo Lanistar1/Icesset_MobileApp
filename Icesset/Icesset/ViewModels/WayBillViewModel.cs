@@ -124,26 +124,26 @@ namespace Icesset.ViewModels
                     UserList = new List<Result>(data.data.result);
                     FullName = UserList;
 
-                    
 
-                    //List<string> names = new List<string>();
-                    //List<string> lists = new List<string>();
-                    //List<Result> selectedId = new List<Result>();
-                    //foreach (var item in UserList)
+
+                    //list<string> names = new list<string>();
+                    //list<string> lists = new list<string>();
+                    //list<result> selectedid = new list<result>();
+                    //foreach (var item in userlist)
                     //{
-                    //    Console.WriteLine(item);
-                    //    var sentTo = item.user_id;
-                    //    var userName = $"{item.firstName} {item.lastName}";
-                    //    names.Add(userName.ToString());
-                    //    lists.Add(sentTo);
-                    //    lists.Add(strId);
+                    //    console.writeline(item);
+                    //    var sentto = item.user_id;
+                    //    var username = $"{item.firstname} {item.lastname}";
+                    //    names.add(username.tostring());
+                    //    lists.add(sentto);
+                    //    lists.add(strid);
                     //}
 
 
                     //FullName = UserList;
                     //SentTo_Id = new List<string>(lists);
                     //Constant.UserList = SentTo_Id;
-                   
+
                     //for (int i = 0; i < UserList.Count; i++)
                     //{
                     //    Console.WriteLine(UserList[i]);         

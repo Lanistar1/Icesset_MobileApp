@@ -49,6 +49,8 @@ namespace Icesset.Models
         //}
     }
 
+
+
     public class CollectModel
     {
         //public CollectModel(BatchInfo batch, List<NewLotDetail> newLot)

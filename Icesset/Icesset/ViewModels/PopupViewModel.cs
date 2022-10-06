@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 using System.Linq;
+using System.Collections;
 
 namespace Icesset.ViewModels
 {
@@ -57,7 +58,7 @@ namespace Icesset.ViewModels
         public PopupViewModel(INavigation navigation)
         {
             Navigation = navigation;
-            var Items = Constant.Transact;
+            var Items = Constant.ItemSelected;
             UpdateViewBinding(Items);
 
 
@@ -72,10 +73,10 @@ namespace Icesset.ViewModels
             CollectCommand = new Command(async () => await GetCollectExecute());
         }
 
-        public PopupViewModel(INavigation navigation, ObservableCollection<Response> selectedItems) : this(navigation)
-        {
-            this.selectedItems = selectedItems;
-        }
+        //public PopupViewModel(INavigation navigation, ObservableCollection<Response> selectedItems) : this(navigation)
+        //{
+        //    this.selectedItems = selectedItems;
+        //}
 
         private void UpdateViewBinding(ObservableCollection<Response> items)
 
@@ -83,35 +84,57 @@ namespace Icesset.ViewModels
         {
             try
             {
-                var _items = new List<NewLotDetail>();
-                var _item = new List<TransactItemData>();
-                var xItems = new NewLotDetail();
+
+                //var LotQuantity = Constant.ItemSelected.FirstOrDefault().data;
+                //var LotTransaction = Constant.ItemSelected;
+                //List<string> LotTransact = new List<string>();
+                ////foreach (var item in LotTransaction)
+                ////{
+                ////    var Lot = item.
+                //// }
+
+                //List<string> quantityLot = new List<string>();
+                //foreach (var item in LotQuantity)
+                //{
+                //    var quantity = item.qyt_loc_id;
+                //    quantityLot.Add(quantity);
+                //}
+                //quantityLoc = new List<string>(quantityLot);
+                //Constant.QuantityLoc = quantityLot;
+
+
+
+                //var _items = new List<NewLotDetail>();
+                //var _item = new List<TransactItemData>();
+                //var xItems = new NewLotDetail();
                 //foreach (var item in items)
                 //{
 
-                //    xItems = new NewLotDetail() { user_id = item.data.FirstOrDefault().user_id, user_name = item.data.FirstOrDefault().user_name, qyt_loc_id = item.data.FirstOrDefault().qyt_loc_id, store_id = item.store_id, store_name = item.data.FirstOrDefault().store_name };
+                //    NewLotDetail xitems = new NewLotDetail() { user_id = Constant.CurrentUserData.info.user_id, user_name = Constant.CurrentUserData.info.fullname, 
+                //        qyt_loc_id = item.qyt_loc_id, store_id = Constant.selectedStoreId, store_name = Constant.selectedStore };
+                //    _items.Add(xitems);
+
+                //}
+
+                //    item.newtransact = new observablecollection<transactitemdata>(item.data);
+                //}
+                //foreach (var item in items)
+                //{
+
+                //    xItems = new NewLotDetail() {qyt_loc_id = item.data.FirstOrDefault().qyt_loc_id };
                 //    //foreach (var u in item.data)
                 //    //{
                 //    //}
                 //    //item.newTransact = new ObservableCollection<TransactItemData>(item.data);
                 //}
-                foreach (var item in items)
-                {
-
-                    xItems = new NewLotDetail() {qyt_loc_id = item.data.FirstOrDefault().qyt_loc_id };
-                    //foreach (var u in item.data)
-                    //{
-                    //}
-                    //item.newTransact = new ObservableCollection<TransactItemData>(item.data);
-                }
-                _items.Add(xItems);
+                //_items.Add(xItems);
 
                 //foreach (var item in _item)
                 //{
                 //    NewLotDetail cmItems = new NewLotDetail(item[0]., item.data., item.user_id, item.user_name, item.qyt_loc_id);
                 //    _items.Add(cmItems);
                 //}
-                SelectedItems = _items;
+                //SelectedItems = _items;
             }
             catch (Exception ex)
             {
@@ -132,14 +155,25 @@ namespace Icesset.ViewModels
             }
         }
 
-        private string quantityLoc;
-        public string QuantityLoc
+        private List<string> quantityLoc;
+        public List<string> QuantityLoc
         {
             get => quantityLoc;
             set
             {
                 quantityLoc = value;
                 OnPropertyChanged(nameof(QuantityLoc));
+            }
+        }
+            
+        private string newQuantityLoc;
+        public string NewQuantityLoc
+        {
+            get => newQuantityLoc;
+            set
+            {
+                newQuantityLoc = value;
+                OnPropertyChanged(nameof(NewQuantityLoc));
             }
         }
 
@@ -172,23 +206,62 @@ namespace Icesset.ViewModels
                 string storeName = Constant.selectedStore;
                 string storeId = Constant.selectedStoreId;
                 var LotQuantity = Constant.ItemSelected.FirstOrDefault().data;
+                var LotTransaction = Constant.ItemSelected;
+                //List<string> LotTransact = new List<string>();
+                //foreach (var item in LotTransaction)
+                //{
+                //    var Lot = item.
+                // }
+
+                List<string> quantityLot = new List<string>();
+                CollectModel _listOfLotItems = new CollectModel();
+                var x = new List<NewLotDetail>();
                 foreach (var item in LotQuantity)
                 {
-                    quantityLoc = item.qyt_loc_id;
+                    var quantity = item.qyt_loc_id;
+                    //quantityLoc = item.qyt_loc_id;
+                    quantityLot.Add(quantity);
+                    NewLotDetail newLotDetail = new NewLotDetail()
+                    {
+                        store_id = Constant.selectedStoreId,
+                        qyt_loc_id = quantity,
+                        store_name = Constant.selectedStore,
+                        user_id = Constant.CurrentUserData.info.user_id,
+                        user_name = Constant.CurrentUserData.info.fullname
+                };
+                    x.Add(newLotDetail);                  
+                    //_listOfLotItems.newLotDetails.Add(newLotDetail);
+
                 }
+                quantityLoc = quantityLot;
+                //quantityLoc.ForEach(item =>
+                //{
+                    
+                //});
+                //foreach (var item in quantityLoc)
+                //{
+                //    var NewQuantityLoc = 
+                //}
+                Constant.QuantityLoc = quantityLot;
+
+
+
                 //string qtyInLoc = Constant.TransactItemData.FirstOrDefault().qyt_loc_id;
 
-                NewLotDetail newLotDetail = new NewLotDetail() {store_id = storeId, qyt_loc_id = quantityLoc, store_name = storeName, user_id = userId, user_name = userName };
+               
 
-                CollectModel _listOfLotItems = new CollectModel();
-                _listOfLotItems.newLotDetails.Add(newLotDetail);
+                
+                //_listOfLotItems.newLotDetails.Add(newLotDetail);
                 //List<NewLotDetail> listOfLotItems;
                 //listOfLotItems.Add(newLotDetail);
                 BatchInfo batchInfo = new BatchInfo() { receivedBy =receiveBy , storedIn =Constant.selectedStore  , transaction_id =transactionId  };
 
-                CollectModel requestPayload = new CollectModel() { batchInfo = batchInfo, newLotDetails = _listOfLotItems.newLotDetails };
+                //CollectModel requestPayload = new CollectModel() { batchInfo = batchInfo, newLotDetails = _listOfLotItems };
+                CollectModel requestPayload = new CollectModel() { batchInfo = batchInfo, newLotDetails = x };
 
                 string payloadJson = JsonConvert.SerializeObject(requestPayload);
+
+                Console.WriteLine(payloadJson);
 
                 string url = Constant.CollectUrl;
                 Console.WriteLine(url);
@@ -207,6 +280,8 @@ namespace Icesset.ViewModels
                 };
 
                 var response = await client.SendAsync(request);
+
+                Console.WriteLine(response);
 
                 string result = await response.Content.ReadAsStringAsync();
                 Console.WriteLine(result);

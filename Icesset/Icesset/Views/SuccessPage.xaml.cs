@@ -20,9 +20,12 @@ namespace Icesset.Views
             BindingContext = new SuccessViewModel(Navigation);
         }
 
+        public NavigationPage MainPage { get; private set; }
+
         private void Done(object sender, EventArgs e)
         {
-            Navigation.PushAsync(new ItemsPage());
+            MainPage = new NavigationPage(new ItemsPage());
+            //Navigation.PushAsync(new ItemsPage());
         }
     }
 }

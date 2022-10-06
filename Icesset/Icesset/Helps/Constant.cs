@@ -14,6 +14,7 @@ namespace Icesset.Helps
         public static string LoginUrl => $"{BaseUrl}/api/v1/users/login/";
         public static string accessToken { get; set; }
         public static string waybillResult { get; set; }
+        public static List<string> QuantityLoc { get; set; }
 
         public static string TransactionDetailUrl => $"{BaseUrl}/api/v1/transactions/{waybillResult}";
         public static UserData CurrentUserData { get; set; }
