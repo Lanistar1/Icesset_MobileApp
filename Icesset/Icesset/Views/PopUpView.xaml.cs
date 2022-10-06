@@ -3,6 +3,7 @@ using Icesset.Models;
 using Icesset.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,13 +20,20 @@ namespace Icesset.Views
         //private readonly BatchInfo batchInfo;
         private string storeType;
         private string selectedStoreId;
-
+        private ObservableCollection<Response> selectedItems;
 
         public PopUpView()
         {
             InitializeComponent();
             BindingContext = new PopupViewModel(Navigation);
         }
+        //public PopUpView(ObservableCollection<Response> selectedItems)
+        //{
+        //    InitializeComponent();
+        //    BindingContext = new PopupViewModel(Navigation, selectedItems);
+        //}
+
+        
 
         private void userListPicker_SelectedIndexChanged(object sender, EventArgs e)
         {

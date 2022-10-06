@@ -58,7 +58,8 @@ namespace Icesset.Models
         //}
 
         public BatchInfo batchInfo { get; set; }
-        public NewLotDetail newLotDetails { get; set; }
+        public List<NewLotDetail> newLotDetails { get; set; }
+        //public NewLotDetail newLotDetails { get; set; }
 
 
     }

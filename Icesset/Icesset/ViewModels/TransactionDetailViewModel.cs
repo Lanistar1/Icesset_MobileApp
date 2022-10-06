@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.CommunityToolkit.Extensions;
 using Xamarin.Forms;
 
 namespace Icesset.ViewModels
@@ -69,16 +70,21 @@ namespace Icesset.ViewModels
 
             Navigation = navigation;
 
-            //Task _task = GetTransactExecute();
+            //GetShowPopupExecute();
+
+            //ShowPopupCommand = new Command(async () => await GetShowPopupExecute());
 
             //TransactCommand = new Command(async () => await GetTransactExecute());
 
             IsBusy = true;
             SelectedItems = selectedItems;
+            Constant.ItemSelected = null;
             Constant.ItemSelected = SelectedItems;
+           
             //LotBill = newLotDetail;
             //BatchDetails = batchInfo;
             Transact = new ObservableCollection<Response>(SelectedItems);
+            
             foreach (var item in Transact)
             {
                 item.data = new ObservableCollection<TransactItemData>(item.data);
@@ -124,7 +130,6 @@ namespace Icesset.ViewModels
         }
 
         private string messageLabel;
-
         public string MessageLabel
         {
             get => messageLabel;
@@ -134,6 +139,14 @@ namespace Icesset.ViewModels
                 OnPropertyChanged(nameof(MessageLabel));
             }
         }
+
+
+        //public Command ShowPopupCommand { get; }
+
+        //public async Task GetShowpopupExecute()
+        //{
+        //    await Navigation.PushAsync(new PopUpView(selectedItems));
+        //}
 
         //public Command TransactCommand { get; }
         //public async Task GetTransactExecute()

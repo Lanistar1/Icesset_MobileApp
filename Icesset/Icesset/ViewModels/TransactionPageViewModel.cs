@@ -91,6 +91,10 @@ namespace Icesset.ViewModels
                 var mod = model;
                 
                 model.isSelected = model.isSelected ? false : true;
+                if (SelectedItems.Count > 0)
+                {
+                    SelectedItems.Clear();
+                }
                 SelectedItems.Add(model);
 
                 if (model.receivedBy == model.user_id && model.transaction_status == "Pending" && model.created_by_id != model.user_id )
@@ -153,6 +157,8 @@ namespace Icesset.ViewModels
                     var data = JsonConvert.DeserializeObject<TransactionModel>(result);
                     Console.WriteLine("passedjiojiojiojio");
                     Console.WriteLine(data.data);
+
+
                     var transacts = data.data.response;
                     foreach (var item in transacts)
                     {

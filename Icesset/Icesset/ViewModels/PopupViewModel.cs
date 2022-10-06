@@ -72,6 +72,11 @@ namespace Icesset.ViewModels
             CollectCommand = new Command(async () => await GetCollectExecute());
         }
 
+        public PopupViewModel(INavigation navigation, ObservableCollection<Response> selectedItems) : this(navigation)
+        {
+            this.selectedItems = selectedItems;
+        }
+
         private void UpdateViewBinding(ObservableCollection<Response> items)
 
 
@@ -127,7 +132,19 @@ namespace Icesset.ViewModels
             }
         }
 
+        private string quantityLoc;
+        public string QuantityLoc
+        {
+            get => quantityLoc;
+            set
+            {
+                quantityLoc = value;
+                OnPropertyChanged(nameof(QuantityLoc));
+            }
+        }
+
         private string messageLabel;
+        private ObservableCollection<Response> selectedItems;
 
         public string MessageLabel
         {
@@ -148,20 +165,28 @@ namespace Icesset.ViewModels
             {
                 HttpClient client = new HttpClient();
 
-                string transactionId = Constant.Transact.FirstOrDefault().transaction_id;
+                string transactionId = Constant.ItemSelected.FirstOrDefault().transaction_id;
                 string receiveBy = Constant.CurrentUserData.info.fullname;
                 string userId = Constant.CurrentUserData.info.user_id;
                 string userName = Constant.CurrentUserData.info.fullname;
                 string storeName = Constant.selectedStore;
                 string storeId = Constant.selectedStoreId;
-                //string qtyInLoc = Constant.Transact.FirstOrDefault().qyt_loc_id;
-                string qtyInLoc = Constant.TransactItemData.FirstOrDefault().qyt_loc_id;
+                var LotQuantity = Constant.ItemSelected.FirstOrDefault().data;
+                foreach (var item in LotQuantity)
+                {
+                    quantityLoc = item.qyt_loc_id;
+                }
+                //string qtyInLoc = Constant.TransactItemData.FirstOrDefault().qyt_loc_id;
 
-                NewLotDetail newLotDetail = new NewLotDetail() {store_id = storeId, qyt_loc_id = qtyInLoc, store_name = storeName, user_id = userId, user_name = userName };
+                NewLotDetail newLotDetail = new NewLotDetail() {store_id = storeId, qyt_loc_id = quantityLoc, store_name = storeName, user_id = userId, user_name = userName };
 
+                CollectModel _listOfLotItems = new CollectModel();
+                _listOfLotItems.newLotDetails.Add(newLotDetail);
+                //List<NewLotDetail> listOfLotItems;
+                //listOfLotItems.Add(newLotDetail);
                 BatchInfo batchInfo = new BatchInfo() { receivedBy =receiveBy , storedIn =Constant.selectedStore  , transaction_id =transactionId  };
 
-                CollectModel requestPayload = new CollectModel() { batchInfo = batchInfo, newLotDetails = newLotDetail };
+                CollectModel requestPayload = new CollectModel() { batchInfo = batchInfo, newLotDetails = _listOfLotItems.newLotDetails };
 
                 string payloadJson = JsonConvert.SerializeObject(requestPayload);
 
