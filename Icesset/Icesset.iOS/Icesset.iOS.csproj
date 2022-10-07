@@ -126,6 +126,15 @@
     <PackageReference Include="jQuery.TimeAgo">
       <Version>1.1.1</Version>
     </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter">
+      <Version>5.0.0-preview.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Analytics">
+      <Version>5.0.0-preview.1</Version>
+    </PackageReference>
+    <PackageReference Include="Microsoft.AppCenter.Crashes">
+      <Version>5.0.0-preview.1</Version>
+    </PackageReference>
     <PackageReference Include="Prism.Plugin.Popups">
       <Version>8.0.76</Version>
     </PackageReference>

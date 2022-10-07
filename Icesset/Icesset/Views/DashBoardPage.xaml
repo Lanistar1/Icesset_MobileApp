@@ -4,106 +4,109 @@
              BackgroundColor="#cbc3e3"
              Title="DashBoard"
              x:Class="Icesset.Views.DashBoardPage">
-    <ScrollView>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="0" Margin="20,20,20,0">
-                <FlexLayout JustifyContent="SpaceBetween">
-                    <Frame BackgroundColor="{StaticResource PrimaryColor}" WidthRequest="120" HeightRequest="155" CornerRadius="20">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Tapped_Transaction"/>
-                        </Frame.GestureRecognizers>
-                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                            <Label Text="{Binding Items}" FontSize="Large" TextColor="White" FontFamily="Poppins-Light" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                            <Label Text="Transactions" FontFamily="Poppins-Light" TextColor="White"/>
-                        </StackLayout>
-                    </Frame>
-                    <Frame BackgroundColor="{StaticResource TertiaryColor}" WidthRequest="120" HeightRequest="155" CornerRadius="20">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Tapped_Items"/>
-                        </Frame.GestureRecognizers>
-                        <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
-                            <Label Text="{Binding Transaction}" FontSize="Large" TextColor="White" FontFamily="Poppins-Light" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
-                            <Label Text="Items in store" FontFamily="Poppins-Light" TextColor="White"/>
-                        </StackLayout>
-                    </Frame>
-                </FlexLayout>
-            </StackLayout>
+    <RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshCommand}" RefreshColor="Purple" Grid.Row="1">
+        <ScrollView>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
 
-            <StackLayout Grid.Row="1">
+                <StackLayout Grid.Row="0" Margin="20,20,20,0">
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Frame BackgroundColor="{StaticResource PrimaryColor}" WidthRequest="120" HeightRequest="155" CornerRadius="20">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Tapped_Transaction"/>
+                            </Frame.GestureRecognizers>
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label Text="{Binding Items}" FontSize="Large" TextColor="White" FontFamily="Poppins-Light" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Text="Transactions" FontFamily="Poppins-Light" TextColor="White"/>
+                            </StackLayout>
+                        </Frame>
+                        <Frame BackgroundColor="{StaticResource TertiaryColor}" WidthRequest="120" HeightRequest="155" CornerRadius="20">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="Tapped_Items"/>
+                            </Frame.GestureRecognizers>
+                            <StackLayout VerticalOptions="Center" HorizontalOptions="Center">
+                                <Label Text="{Binding Transaction}" FontSize="Large" TextColor="White" FontFamily="Poppins-Light" FontAttributes="Bold" HorizontalTextAlignment="Center"/>
+                                <Label Text="Items in store" FontFamily="Poppins-Light" TextColor="White"/>
+                            </StackLayout>
+                        </Frame>
+                    </FlexLayout>
+                </StackLayout>
 
-            
-            <FlexLayout JustifyContent="SpaceBetween" Margin="20,-30,20,10" AlignItems="Center">
-                <Label Text="Recent Transactions" FontFamily="Poppins-Light" TextColor="Black" FontSize="Subtitle"/>
-                    <Frame Padding="20,8" CornerRadius="5">
-                        <Frame.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="See_All"/>
-                        </Frame.GestureRecognizers>
-                        <Label Text="See all" TextColor="#540D6E"/>
-                    </Frame>
-                <!--<Button Text="See all" Padding="-4" CornerRadius="10" Clicked="See_All" BackgroundColor="#F6F6F6"/>-->
-            </FlexLayout>
+                <StackLayout Grid.Row="1">
 
-            <CollectionView x:Name="ListView" ItemsSource="{Binding ListView}" Margin="20,0,20,0">
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate >
 
-                        <Frame 
+                    <FlexLayout JustifyContent="SpaceBetween" Margin="20,-30,20,10" AlignItems="Center">
+                        <Label Text="Recent Transactions" FontFamily="Poppins-Light" TextColor="Black" FontSize="Subtitle"/>
+                        <Frame Padding="20,8" CornerRadius="5">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="See_All"/>
+                            </Frame.GestureRecognizers>
+                            <Label Text="See all" TextColor="#540D6E"/>
+                        </Frame>
+                        <!--<Button Text="See all" Padding="-4" CornerRadius="10" Clicked="See_All" BackgroundColor="#F6F6F6"/>-->
+                    </FlexLayout>
+
+                    <CollectionView x:Name="ListView" ItemsSource="{Binding ListView}" Margin="20,0,20,0">
+                        <CollectionView.ItemsLayout>
+                            <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
+                        </CollectionView.ItemsLayout>
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate >
+
+                                <Frame 
                             CornerRadius="10"
                             BackgroundColor="White"
                             HeightRequest="100"
                             WidthRequest="100">
-                                <!--<Frame.GestureRecognizers>
+                                    <!--<Frame.GestureRecognizers>
                                     <TapGestureRecognizer Tapped="Tapped_Me"/>
                                 </Frame.GestureRecognizers>-->
-                                <!--<Frame.GestureRecognizers>
+                                    <!--<Frame.GestureRecognizers>
                                     <TapGestureRecognizer Command="{Binding Path=BindingContext.TappedCommand, Source={x:Reference ListView}}" CommandParameter="{Binding .}"/>
                                 </Frame.GestureRecognizers>-->
-                                <StackLayout>
-                                    <Grid Margin="0,0,0,30">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="1*"/>
-                                            <ColumnDefinition Width="4*"/>
-                                            <ColumnDefinition Width="3*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <StackLayout Grid.Column="0">
-                                            <Image Source="outgoing.png" HeightRequest="20" Margin="0,5,0,0" WidthRequest="20" HorizontalOptions="StartAndExpand"/>
-                                        </StackLayout>
-                                        <StackLayout Grid.Column="1" >
-                                            <Label Text="Transfer to" FontSize="Small" FontFamily="Poppins-Light" TextColor="Black" Padding="0"/>
-                                            <Label Text="{Binding sent_to_name}" Padding="0,-3,0,0" FontSize="Small" FontAttributes="Bold" FontFamily="Poppins-Light" TextColor="{StaticResource PrimaryColor}" />
-                                        </StackLayout>
-                                        <StackLayout Grid.Column="2">
-                                            <Label Text="Location" FontSize="Small" FontFamily="Poppins-Light" TextColor="Black" HorizontalTextAlignment="End"/>
-                                            <Label Text="{Binding destination}" Margin="0,0,0,0" Padding="0,-2,0,0" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Small" FontFamily="Poppins-Light" TextColor="{StaticResource PrimaryColor}" />
-                                        </StackLayout>
-                                    </Grid>
-                                 <FlexLayout AlignItems="Center" JustifyContent="SpaceBetween" Margin="40,10,0,0" >
-                                <StackLayout>
-                                    <Label Text="Sent on" FontSize="Small" FontFamily="Poppins-Light" TextColor="Black" />
-                                            <!--<Label Text="{Binding dateCreated}" Padding="0,-3" FontSize="Small" TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold" FontFamily="Poppins-Light" />-->
-                                            <Label Text="{Binding modifiedDate}" Padding="0,-3,0,0" FontSize="Small" TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold" FontFamily="Poppins-Light" />
-                                </StackLayout>
-                                <StackLayout>
-                                    <Label Text="Status" FontSize="Small" Padding="0,-2,0,0" FontFamily="Poppins-Light" TextColor="Black" HorizontalTextAlignment="End" />
-                                            <Label Text="{Binding transaction_status}" Padding="0,-1,0,0" FontSize="Small" FontAttributes="Bold" FontFamily="Poppins-Light" TextColor="{StaticResource TertiaryColor}" />
-                                </StackLayout>
-                            </FlexLayout>
-                             </StackLayout>
-                            
-                        </Frame>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
-        </StackLayout>
-    </Grid>
-    </ScrollView>
+                                    <StackLayout>
+                                        <Grid Margin="0,0,0,30">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="1*"/>
+                                                <ColumnDefinition Width="4*"/>
+                                                <ColumnDefinition Width="3*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout Grid.Column="0">
+                                                <Image Source="outgoing.png" HeightRequest="20" Margin="0,5,0,0" WidthRequest="20" HorizontalOptions="StartAndExpand"/>
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="1" >
+                                                <Label Text="Transfer to" FontSize="Small" FontFamily="Poppins-Light" TextColor="Black" Padding="0"/>
+                                                <Label Text="{Binding sent_to_name}" Padding="0,-3,0,0" FontSize="Small" FontAttributes="Bold" FontFamily="Poppins-Light" TextColor="{StaticResource PrimaryColor}" />
+                                            </StackLayout>
+                                            <StackLayout Grid.Column="2">
+                                                <Label Text="Location" FontSize="Small" FontFamily="Poppins-Light" TextColor="Black" HorizontalTextAlignment="End"/>
+                                                <Label Text="{Binding destination}" Margin="0,0,0,0" Padding="0,-2,0,0" HorizontalTextAlignment="End" FontAttributes="Bold" FontSize="Small" FontFamily="Poppins-Light" TextColor="{StaticResource PrimaryColor}" />
+                                            </StackLayout>
+                                        </Grid>
+                                        <FlexLayout AlignItems="Center" JustifyContent="SpaceBetween" Margin="40,10,0,0" >
+                                            <StackLayout>
+                                                <Label Text="Sent on" FontSize="Small" FontFamily="Poppins-Light" TextColor="Black" />
+                                                <!--<Label Text="{Binding dateCreated}" Padding="0,-3" FontSize="Small" TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold" FontFamily="Poppins-Light" />-->
+                                                <Label Text="{Binding modifiedDate}" Padding="0,-3,0,0" FontSize="Small" TextColor="{StaticResource PrimaryColor}" FontAttributes="Bold" FontFamily="Poppins-Light" />
+                                            </StackLayout>
+                                            <StackLayout>
+                                                <Label Text="Status" FontSize="Small" Padding="0,-2,0,0" FontFamily="Poppins-Light" TextColor="Black" HorizontalTextAlignment="End" />
+                                                <Label Text="{Binding transaction_status}" Padding="0,-1,0,0" FontSize="Small" FontAttributes="Bold" FontFamily="Poppins-Light" TextColor="{StaticResource TertiaryColor}" />
+                                            </StackLayout>
+                                        </FlexLayout>
+                                    </StackLayout>
+
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </Grid>
+        </ScrollView>
+    </RefreshView>
 </ContentPage>

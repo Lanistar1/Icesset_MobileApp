@@ -14,6 +14,8 @@ namespace Icesset.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SuccessPage : ContentPage
     {
+        private ItemsPage _itemsPage;
+
         public SuccessPage()
         {
             InitializeComponent();
@@ -22,9 +24,15 @@ namespace Icesset.Views
 
         public NavigationPage MainPage { get; private set; }
 
-        private void Done(object sender, EventArgs e)
+        private async void Done(object sender, EventArgs e)
         {
-            MainPage = new NavigationPage(new ItemsPage());
+            new NavigationPage(new ItemsPage());
+
+            if (_itemsPage == null)
+                _itemsPage = new ItemsPage();
+            await Navigation.PushAsync(_itemsPage);
+
+            //MainPage = new NavigationPage(new ItemsPage());
             //Navigation.PushAsync(new ItemsPage());
         }
     }

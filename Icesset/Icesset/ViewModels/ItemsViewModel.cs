@@ -110,14 +110,14 @@ namespace Icesset.ViewModels
                 OnPropertyChanged(nameof(ImageChecked));
             }
         }
-
-        //public bool CheckVisible
+        //private bool isRefreshing;
+        //public bool IsRefreshing
         //{
-        //    get => checkVisible;
+        //    get => isRefreshing;
         //    set
         //    {
-        //        changeVisible = value;
-        //        OnPropertyChanged(nameof(CheckVisible));
+        //        isRefreshing = value;
+        //        OnPropertyChanged(nameof(IsRefreshing));
         //    }
         //}
 
@@ -175,6 +175,7 @@ namespace Icesset.ViewModels
 
             ItemCommand = new Command(async () => await GetItemExecute());
             ProceedCommand = new Command(async () => await ProceedCommandExecute());
+            //RefreshCommand = new Command(async () => await RefreshCommandExecute());
 
 
             //helpers.myitems = new ObservableCollection<ItemsModel> {
@@ -310,6 +311,16 @@ namespace Icesset.ViewModels
         public Command ItemChangeCommand { get; }
 
         public Command GetItemCommand { get; }
+        //public Command RefreshCommand { get; }
+
+        //public async Task RefreshCommandExecute()
+        //{
+        //    await GetItemExecute();
+
+        //    // Stop refreshing
+        //    IsRefreshing = false;
+        //}
+
         #endregion
         public async Task GetItemExecute()
         {

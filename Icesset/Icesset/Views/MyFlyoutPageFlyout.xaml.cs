@@ -39,7 +39,7 @@ namespace Icesset.Views
                     new MyFlyoutPageFlyoutMenuItem { Id = 3, Title = "Staff", IconSource="staff.png", TargetType=typeof(StaffPage) },
                     new MyFlyoutPageFlyoutMenuItem { Id = 5, Title = "Profile", IconSource="profile.png", TargetType=typeof(ProfilePage) },
                     new MyFlyoutPageFlyoutMenuItem { Id = 4, Title = "Report", IconSource="reportss.png", TargetType=typeof(ReportPage) },
-                    new MyFlyoutPageFlyoutMenuItem { Id = 6, Title = "Scanner", IconSource="scanner.png", TargetType=typeof(ScannerPage) },
+                    new MyFlyoutPageFlyoutMenuItem { Id = 6, Title = "Scanner", IconSource="scannerImage.png", TargetType=typeof(ScannerPage) },
                     new MyFlyoutPageFlyoutMenuItem { Id = 7, Title = "Logout", IconSource="logout.png", TargetType=typeof(LoginPage) },
 
                 });

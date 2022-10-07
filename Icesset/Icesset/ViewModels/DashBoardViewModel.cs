@@ -56,7 +56,19 @@ namespace Icesset.ViewModels
                 OnPropertyChanged(nameof(Transaction));
             }
         }
-        
+
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
+
         private int items;
 
         public int Items
@@ -126,6 +138,7 @@ namespace Icesset.ViewModels
             DashBoardCommand = new Command(async () => await GetDashBoardExecute());
             ItemCommand = new Command(async () => await GetItemExecute());
             TransactCommand = new Command(async () => await GetTransactExecute());
+            RefreshCommand = new Command(async () => await RefreshCommandExecute());
         }
 
         //private async Task TappedCommandExecute(DashBoardData model)
@@ -153,6 +166,17 @@ namespace Icesset.ViewModels
         //public Command<DashBoardData> TappedCommand { get; }
 
         public Command TransactCommand { get; }
+
+        public Command RefreshCommand { get; }
+
+        public async Task RefreshCommandExecute()
+        {
+            await GetTransactExecute();
+            await GetItemExecute();
+            await GetDashBoardExecute();
+            // Stop refreshing
+            IsRefreshing = false;
+        }
 
 
         public async Task GetTransactExecute()

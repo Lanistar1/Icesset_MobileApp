@@ -12,6 +12,8 @@
         <converter:BooleanToImageConverter x:Key="imageConverter"/>
     </ContentPage.Resources>
     <ContentPage.Content>
+        
+        
             <ScrollView>
                 <Grid Margin="10,20">
                     <Grid.RowDefinitions>
@@ -47,22 +49,26 @@
                             HeightRequest="40" WidthRequest="100" CornerRadius="10" BackgroundColor="White"/>
                     </FlexLayout>
 
-                    <CollectionView x:Name="getItems" 
+
+                <!--<RefreshView IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Command="{Binding RefreshCommand}" RefreshColor="Purple" Grid.Row="1">
+
+                </RefreshView>-->
+                <CollectionView x:Name="getItems" 
                              ItemsSource="{Binding GetItems, Mode=TwoWay}" 
                              Margin="0,60,0,10" Grid.Row="1">
-                        <CollectionView.ItemsLayout>
-                            <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
-                        </CollectionView.ItemsLayout>
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout>
-                                    <Frame CornerRadius="10" Padding="10" HeightRequest="100">
-                                        <Frame.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Path=BindingContext.TouchCommand, Source={x:Reference getItems}}" CommandParameter="{Binding .}"/>
-                                            <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
-                                        </Frame.GestureRecognizers>
-                                        <StackLayout>
-                                            <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
+                    <CollectionView.ItemsLayout>
+                        <GridItemsLayout VerticalItemSpacing="10" HorizontalItemSpacing="10" Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame CornerRadius="10" Padding="10" HeightRequest="100">
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Path=BindingContext.TouchCommand, Source={x:Reference getItems}}" CommandParameter="{Binding .}"/>
+                                        <SwipeGestureRecognizer Direction="Right" Swiped="OnSwiped"/>
+                                    </Frame.GestureRecognizers>
+                                    <StackLayout>
+                                        <FlexLayout JustifyContent="SpaceBetween" AlignItems="Center">
                                             <Grid>
                                                 <Frame HeightRequest="40" WidthRequest="90" CornerRadius="50" HorizontalOptions="StartAndExpand" 
                                                        VerticalOptions="StartAndExpand" Margin="0" Padding="0" BackgroundColor="Maroon" 
@@ -71,9 +77,9 @@
                                                 </Frame>
                                                 <Image Source="checkItem.png" IsVisible="{Binding ImageChecked}" WidthRequest="100" HeightRequest="100"/>
                                             </Grid>
-                                                <StackLayout>
-                                                    <FlexLayout JustifyContent="SpaceBetween" Margin="30,0,0,0">
-                                                        <Label Text="{Binding item_name}" TextColor="Black" FontSize="Subtitle"/>
+                                            <StackLayout>
+                                                <FlexLayout JustifyContent="SpaceBetween" Margin="30,0,0,0">
+                                                    <Label Text="{Binding item_name}" TextColor="Black" FontSize="Subtitle"/>
 
                                                     <Grid>
                                                         <Frame WidthRequest="45" HeightRequest="30" Padding="0" HasShadow="True" Margin="0,0,0,0"
@@ -108,25 +114,25 @@
                                                             BorderWidth="1"
                                                             CommandParameter="{Binding .}"
                                                             Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}"/>-->
-                                                    </FlexLayout>
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <StackLayout Margin="30,0,0,-5">
-                                                            <Label Text="Category" Margin="0,0,0,-15"/>
-                                                            <Label Text="{Binding category}" Margin="0,5,0,0" FontSize="Subtitle" TextColor="Purple"/>
-                                                        </StackLayout>
-                                                        <StackLayout HorizontalOptions="FillAndExpand">
-                                                            <Label Text="Status" Padding="0,0" Margin="85,0,0,-15" HorizontalTextAlignment="End"/>
+                                                </FlexLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <StackLayout Margin="30,0,0,-5">
+                                                        <Label Text="Category" Margin="0,0,0,-15"/>
+                                                        <Label Text="{Binding category}" Margin="0,5,0,0" FontSize="Subtitle" TextColor="Purple"/>
+                                                    </StackLayout>
+                                                    <StackLayout HorizontalOptions="FillAndExpand">
+                                                        <Label Text="Status" Padding="0,0" Margin="85,0,0,-15" HorizontalTextAlignment="End"/>
                                                         <Label Text="{Binding item_status}" Margin="60,5,0,0" HorizontalTextAlignment="End" Padding="0,0" FontSize="Subtitle" TextColor="Purple"/>
-                                                        </StackLayout>
                                                     </StackLayout>
                                                 </StackLayout>
-                                            </FlexLayout>
-                                        </StackLayout>
-                                    </Frame>
-                                </StackLayout>
+                                            </StackLayout>
+                                        </FlexLayout>
+                                    </StackLayout>
+                                </Frame>
+                            </StackLayout>
 
 
-                                <!--<StackLayout>
+                            <!--<StackLayout>
                                 <Frame CornerRadius="10" Padding="10">
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.TouchCommand, Source={x:Reference getItems}}" CommandParameter="{Binding .}"/>
@@ -138,10 +144,10 @@
                                                 <Frame HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0" BackgroundColor="Maroon">
                                                     <Label Text="{Binding quantity}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                                 </Frame>-->
-                                <!--<Frame IsVisible="{Binding Path=BindingContext.ChangeVisible, Source={x:Reference getItems}}" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0" BackgroundColor="Maroon">
+                            <!--<Frame IsVisible="{Binding Path=BindingContext.ChangeVisible, Source={x:Reference getItems}}" HeightRequest="40" WidthRequest="40" CornerRadius="20" HorizontalOptions="Start" VerticalOptions="Start" Margin="0" Padding="0" BackgroundColor="Maroon">
                                                     <Label Text="{Binding quantity}" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" HorizontalTextAlignment="Center" VerticalTextAlignment="Center" />
                                                 </Frame>-->
-                                <!--<Frame IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" 
+                            <!--<Frame IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" 
                                                HasShadow="False"
                                                BackgroundColor="Transparent"
                                                HeightRequest="30" WidthRequest="30">
@@ -152,22 +158,22 @@
                                                       VerticalOptions="Center" HorizontalOptions="Center"/>
                                                     </Grid>-->
 
-                                <!--<CheckBox IsChecked="{Binding isSelected}" IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" VerticalOptions="Center" HorizontalOptions="Center"/>-->
+                            <!--<CheckBox IsChecked="{Binding isSelected}" IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" VerticalOptions="Center" HorizontalOptions="Center"/>-->
 
-                                <!--<Frame.GestureRecognizers>
+                            <!--<Frame.GestureRecognizers>
                                                         <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}"
                                                                       NumberOfTapsRequired="1"
                                                                       CommandParameter="{Binding .}"/>
                                                     </Frame.GestureRecognizers>
                                                 </Frame>-->
-                                <!--<CheckBox IsChecked="{Binding isSelected}" IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" VerticalOptions="Center" HorizontalOptions="Center">
+                            <!--<CheckBox IsChecked="{Binding isSelected}" IsVisible="{Binding Path=BindingContext.ChangeChecked, Source={x:Reference getItems}}" VerticalOptions="Center" HorizontalOptions="Center">
                                             <CheckBox.GestureRecognizers>
                                                 <TapGestureRecognizer Command="{Binding Path=BindingContext.ItemCheckedCommand, Source={x:Reference getItems}}"
                                                                       NumberOfTapsRequired="1"
                                                                       CommandParameter="{Binding .}"/>
                                             </CheckBox.GestureRecognizers>
                                         </CheckBox>-->
-                                <!--</StackLayout>
+                            <!--</StackLayout>
                                             <StackLayout Margin="40,0,0,0">
                                                 <Grid>
                                                     <Label Text="{Binding item_name}" HorizontalOptions="StartAndExpand" TextColor="Black" FontSize="Subtitle"/>
@@ -176,7 +182,7 @@
                                                             HorizontalOptions="End"
                                                             
                                                             TextColor="Purple"-->
-                                <!--BorderColor="Purple"
+                            <!--BorderColor="Purple"
                                                             BackgroundColor="Transparent"
                                                             BorderWidth="1"
                                                             CommandParameter="{Binding .}"
@@ -197,10 +203,12 @@
                                     </StackLayout>
                                 </Frame>
                             </StackLayout>-->
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+
+            </Grid>
             </ScrollView>
     </ContentPage.Content>
 </ContentPage>

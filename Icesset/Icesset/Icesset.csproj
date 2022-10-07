@@ -20,6 +20,9 @@
 
   <ItemGroup>
     <PackageReference Include="jQuery.TimeAgo" Version="1.1.1" />
+    <PackageReference Include="Microsoft.AppCenter" Version="5.0.0-preview.1" />
+    <PackageReference Include="Microsoft.AppCenter.Analytics" Version="5.0.0-preview.1" />
+    <PackageReference Include="Microsoft.AppCenter.Crashes" Version="5.0.0-preview.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
     <PackageReference Include="Prism.Plugin.Popups" Version="8.0.76" />
     <PackageReference Include="Rg.Plugins.Popup" Version="2.1.0" />
