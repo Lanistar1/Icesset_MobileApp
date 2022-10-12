@@ -14,7 +14,7 @@
             </Grid.RowDefinitions>
 
             <WebView Source="https://test.metabase.astrapay.com.ng/public/dashboard/86703cc6-3296-4eba-90b5-f3f77ed36905"
-                WidthRequest="1300" HeightRequest="600" Grid.Row="0">
+                WidthRequest="1300" HeightRequest="500" Grid.Row="0">
             </WebView>
 
             <WebView Source="https://test.metabase.astrapay.com.ng/public/dashboard/db74dbf3-6c0e-4770-9895-3bc2de989632"

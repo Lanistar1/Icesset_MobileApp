@@ -57,6 +57,17 @@ namespace Icesset.ViewModels
         }
 
 
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                isRefreshing = value;
+                OnPropertyChanged(nameof(IsRefreshing));
+            }
+        }
+
 
         private bool collectVisible = false;
         public bool CollectVisible
@@ -78,6 +89,7 @@ namespace Icesset.ViewModels
 
             //TransactCommand = new Command(async () => await GetTransactExecute());
             TappedCommand = new Command<Response>(async (model) => await GetTappedExecute(model));
+            RefreshCommand = new Command(async () => await RefreshCommandExecute());
             //TransferCommand = new Command(async () => await GetTransferExecute());
         }
 
@@ -123,6 +135,14 @@ namespace Icesset.ViewModels
             }
         }
 
+        public Command RefreshCommand { get; }
+
+        public async Task RefreshCommandExecute()
+        {
+            await GetTransactExecute();
+            // Stop refreshing
+            IsRefreshing = false;
+        }
 
         //public Command TransactCommand { get; }
         public async Task GetTransactExecute()

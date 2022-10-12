@@ -30,6 +30,7 @@ namespace Icesset.ViewModels
             }
         }
 
+
         //private bool collectVisible = false;
         //public bool CollectVisible
         //{
@@ -69,6 +70,8 @@ namespace Icesset.ViewModels
         {
 
             Navigation = navigation;
+
+            //RefreshCommand = new Command(async () => await RefreshCommandExecute());
 
             //GetShowPopupExecute();
 
@@ -115,7 +118,7 @@ namespace Icesset.ViewModels
            
         }
 
-        
+        public Command RefreshCommand { get; }
 
         private bool isMessageVisible = false;
 

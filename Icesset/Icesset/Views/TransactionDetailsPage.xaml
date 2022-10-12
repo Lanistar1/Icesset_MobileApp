@@ -118,7 +118,7 @@
                                 </zxing:ZXingBarcodeImageView>-->
                                 <Frame WidthRequest="40" Margin="200,0,10,0" HeightRequest="30" Padding="-10,0" 
                                            FlowDirection="LeftToRight" CornerRadius="5" BackgroundColor="#540D6E"
-                                           >
+                                           IsVisible="{Binding CollectVisible}">
                                     <Frame.GestureRecognizers>
                                         <TapGestureRecognizer Tapped="ShowPopup"/>
                                     </Frame.GestureRecognizers>
