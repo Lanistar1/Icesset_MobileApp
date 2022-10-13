@@ -22,8 +22,8 @@ namespace Icesset
 
         protected override void OnStart()
         {
-            AppCenter.Start("android={c3bd2c25-b3da-4f19-b329-4fc7e0977c0b};" +
-                  "ios={238e8272-6f26-4c8f-9d10-283d485570cb}",
+            AppCenter.Start("android={a6b8d821-e33b-446b-8320-5749151dd907};" +
+                  "ios={591582a8-0ddd-4903-ab57-1abb99394555}",
                   typeof(Analytics), typeof(Crashes));
         }
 
