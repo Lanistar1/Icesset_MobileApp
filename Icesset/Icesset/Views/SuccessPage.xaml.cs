@@ -14,8 +14,6 @@ namespace Icesset.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SuccessPage : ContentPage
     {
-        //private ItemsPage _itemsPage;
-
         public SuccessPage()
         {
             InitializeComponent();
