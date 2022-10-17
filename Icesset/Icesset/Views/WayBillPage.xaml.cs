@@ -46,12 +46,8 @@ namespace Icesset.Views
 
         private void transTypePicker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
             Picker picker= sender as Picker;
             transType = picker.SelectedItem.ToString();
-
-
-           
         }
 
         private void userListPicker_SelectedIndexChanged(object sender, EventArgs e)
